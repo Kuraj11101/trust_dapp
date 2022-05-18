@@ -168,7 +168,7 @@
                 <a href="{{ route('buyairtimedata') }}" style="text-decoration: none;">
                     <div class="card bg-white text-white shadow">
                         <div class="card-body">
-                            <div class="text-primary-50 small" style="color: blue;">Buy Airtime or Data</div>
+                            <div class="text-primary-50 small" style="color: blue;">Buy Crypto</div>
                         </div>
                     </div>
                 </a>
@@ -177,7 +177,7 @@
                 <a href="{{ route('paybills') }}" style="text-decoration: none;">
                     <div class="card bg-white text-white shadow">
                         <div class="card-body">
-                            <div class="text-primary-50 small" style="color: blue;">Pay Bills</div>
+                            <div class="text-primary-50 small" style="color: blue;">Earn</div>
                         </div>
                     </div>
                 </a>
