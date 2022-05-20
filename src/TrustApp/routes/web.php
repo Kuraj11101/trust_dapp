@@ -125,11 +125,38 @@ Route::group(['middleware' => 'web'], function () {
 
              Route::get('/homeinapptransfer', 'HomeInAppTransferCreditController@index')->name('homeinapptransfer');
              Route::post('/homeinapptransfer', 'HomeInAppTransferController@update_index')->name('update_homeinapptransfer');
-
-
-
-
-
  });
+
+ /**
+     * Paypal routes
+     */
+    // route for view/blade file
+    Route::get('paywithpaypal', array(
+        'as' => 'paywithpaypal',
+        'uses' => 'PaypalController@payWithPaypal',
+    ));
+    // route for post request
+    Route::post('paypal', array(
+        'as' => 'paypal',
+        'uses' => 'PaypalController@postPaymentWithpaypal',
+    ));
+    // route for check status responce
+    Route::get('paypal', array(
+        'as' => 'status',
+        'uses' => 'PaypalController@getPaymentStatus',
+    ));
+        /**
+     * Credit/debit card routes
+     */
+    Route::get('/carddeposit',[
+        'uses'=>'TransaktionController@getcarddeposit',
+        'as'=>'carddeposit'
+    ]);
+    Route::post('/cardDeposit',[
+        'uses'=>'TransaktionController@cardDeposit',
+        'as'=>'cardDeposit'
+    ]);
+
+
 
  Auth::routes();

@@ -132,6 +132,18 @@ class User extends Authenticatable Implements MustVerifyEmail, Wallet, Customer
 
         (bool)$user->paid($item);
 
+        $user = new User();
+        $user->first = $request->first_name;
+        $user->last_name=$request->last_name;
+        $user->email = $request->email;
+        $user->password=$request->password;
+        $user->secret_key = $secret_key;
+        $user->save();
+        $account = new Account();
+        $account->user=$user->id;
+        $account->balance=0.00;
+        $account->save();
+
 
     }
 
@@ -149,6 +161,11 @@ class User extends Authenticatable Implements MustVerifyEmail, Wallet, Customer
 
 		return "{$this->first_name} {$this->last_name}";
 	}
-
+    public function transaktions(){
+        return $this->hasMany(App\Models\Transaktion::class);
+    }
+    public function accounts(){
+        return $this->belongsTo(Account::class);
+    }
 
 }

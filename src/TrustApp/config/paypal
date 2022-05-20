@@ -1,0 +1,34 @@
+<?php
+return array(
+/** set your paypal credential **/
+'client_id' =>'Ab3mGMqSeznDmjmD2wNVu424FLYk79T4dx5S15rPYp1L3xtmdqxaVAvif-ilyZPSG4jTP3VgQi1yeTpu',
+'secret' => 'EFYnKlDOoQDpVt8xKYUo1dslYzl1i3AagcBu4yRVW_kLPKT2fjCNUAuLa9VPp1MA6RtwbOIsVT3OA2E3',
+/**
+* SDK configuration
+*/
+'settings' => array(
+	/**
+	* Available option 'sandbox' or 'live'
+	*/
+	'mode' => 'sandbox',
+	/**
+	* Specify the max request time in seconds
+	*/
+	'http.ConnectionTimeOut' => 1000,
+	/**
+	* Whether want to log to a file
+	*/
+	'log.LogEnabled' => true,
+	/**
+	* Specify the file that want to write on
+	*/
+	'log.FileName' => storage_path() . '/logs/paypal.log',
+	/**
+	* Available option 'FINE', 'INFO', 'WARN' or 'ERROR'
+	*
+	* Logging is most verbose in the 'FINE' level and decreases as you
+	* proceed towards ERROR
+	*/
+	'log.LogLevel' => 'FINE'
+	),
+);

@@ -69,10 +69,10 @@
         </div>
 
         <!-- Nav Item - add bank -->
-        <li class="nav-item {{ Nav::isRoute('addbank') }}">
-            <a class="nav-link" href="{{ route('addbank') }}">
-            <i class="fa fa-bank"></i>
-            <span>{{ __('Add Bank') }}</span></a>
+        <li class="nav-item {{ Nav::isRoute('carddeposit') }}">
+            <a class="nav-link" href="{{ route('carddeposit') }}">
+            <i class="fa fa-credit-card"></i>
+            <span>{{ __('Card Deposit') }}</span></a>
         </li>
 
         <!-- Nav Item - add Card -->

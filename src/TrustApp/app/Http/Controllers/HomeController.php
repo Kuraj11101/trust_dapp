@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Transaktion;
+use App\Models\Account;
 use Bavix\Wallet\Interfaces\Wallet;
 use Bavix\Wallet\Traits\HasWallet;
 use Illuminate\Http\Request;
@@ -73,6 +75,11 @@ class HomeController extends Controller
 
      $wallet = $user->wallet;
      $wallet->balance; // int(10)
+
+
+     //$user = Auth::user();
+    $transaktions = Transaktion::where('user_id', $user->id)->take(5)->get();
+    $acc_balance = Account::where('user_id',$user->id)->first();
 
 		 $widget = [
 			'user' => $user,
