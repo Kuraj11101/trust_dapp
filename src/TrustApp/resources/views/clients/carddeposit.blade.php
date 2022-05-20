@@ -5,7 +5,7 @@
  <header class="panel-heading text-center">
      <h3><b>DEPOSIT FROM CARD</b></h3>
  </header>
- <div class="panel-body ">
+ <div class="panel-body justify-content-center">
  <div class="row">
    <div class="col-md-8 col-md-offset-2">
      <form role="form" id="payment-form" action="{{ route('cardDeposit')}}" method="post">
