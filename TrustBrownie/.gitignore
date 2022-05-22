@@ -1,0 +1,7 @@
+__pycache__
+.env
+.history
+.hypothesis/
+build/deployments
+reports/
+contracts/APIContract.sol
