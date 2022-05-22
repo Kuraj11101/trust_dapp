@@ -31,8 +31,8 @@ INITIAL_VALUE = web3.toWei(2000, "ether")
 host_mumbai = convert.to_address("0xEB796bdb90fFA0f28255275e16936D25d3418603")
 cfa_mumbai = convert.to_address("0x49e565Ed1bdc17F3d220f72DF0857C26FA83F873")
 ida_mumbai = convert.to_address("0x804348D4960a61f2d5F9ce9103027A3E849E09b8")
-daix_mumbai = convert.to_address("0x06577b0B09e69148A45b866a0dE6643b6caC40Af")
-fdai_mumbai = convert.to_address("0x001b3b4d0f3714ca98ba10f6042daebf0b1b7b6f")
+daix_mumbai = convert.to_address("0x983E2b60604603792ea99b95f5e69A0445a83278")
+fdai_mumbai = convert.to_address("0x9A753f0F7886C9fbF63cF59D0D4423C5eFaCE95B")
 
 
 def get_account(index=None, id=None):
@@ -49,7 +49,6 @@ account = get_account()
 
 
 def main():
-    token = TrustToken[-1]
     trust_contract = (
         TrustCFA.deploy(
             host_mumbai,

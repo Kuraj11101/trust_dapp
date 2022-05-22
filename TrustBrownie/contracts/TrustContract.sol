@@ -115,7 +115,7 @@ contract TrustCFA is Ownable {
         uint8 _payType,
         address _companyAddress,
         uint8 _origin
-    ) external {
+    ) external onlyOwner {
         if (_origin == 0) {
             if (_payType == 1) {
                 s_companyInfo[_companyAddress] = Company(
@@ -357,7 +357,7 @@ contract TrustCFA is Ownable {
         }
     }
 
-    function addAdmin(address _keeper) external onlyOwner {
+    function addAdmin(address _keeper) external {
         investmentKeeper = _keeper;
     }
 
