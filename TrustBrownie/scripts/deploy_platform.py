@@ -8,7 +8,9 @@ from brownie import (
     convert,
     accounts,
     config,
-    web3
+    web3,
+    TrustIDA,
+    DepositKeeper
 )
 
 
@@ -57,6 +59,16 @@ def main():
         if len(TrustCFA) <= 0
         else TrustCFA[-1]
     )
+    ida = (
+        TrustIDA.deploy(
+            daix_mumbai,
+            host_mumbai,
+            ida_mumbai,
+            {"from": account}
+        )
+        if len(TrustIDA) <= 0
+        else TrustIDA[-1]
+    )
     native = (
         NativeCompany.deploy(
             host_mumbai,
@@ -68,11 +80,25 @@ def main():
         if len(NativeCompany) <= 0
         else NativeCompany[-1]
     )
-    market = StreamMarket.deploy(
-        trust_contract.address,
-        daix_mumbai,
-        fdai_mumbai,
-        {"from": account}
+    market = (
+        StreamMarket.deploy(
+            trust_contract.address,
+            daix_mumbai,
+            fdai_mumbai,
+            {"from": account}
+        )
+        if len(StreamMarket) <= 0
+        else StreamMarket[-1]
+    )
+    trust_keeper = (
+        DepositKeeper.deploy(
+            trust_contract.address,
+            ida.address,
+            daix_mumbai,
+            {"from": account}
+        )
+        if len(DepositKeeper) <= 0
+        else DepositKeeper[-1]
     )
 
 

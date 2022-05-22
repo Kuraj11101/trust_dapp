@@ -12,6 +12,8 @@ contract TrustIDA is SuperAppBase, Ownable {
     ISuperToken private _cashToken;
     ISuperfluid private _host;
     IInstantDistributionAgreementV1 private _ida;
+    address public trusContract;
+    address public keeper;
 
     uint256 public amountTodistribute;
 
@@ -135,6 +137,14 @@ contract TrustIDA is SuperAppBase, Ownable {
             ),
             new bytes(0) // user data
         );
+    }
+
+    function addAdmin(address _keeper) external onlyOwner {
+        keeper = _keeper;
+    }
+
+    function addIdaContract(address _trust) external onlyOwner {
+        trusContract = _trust;
     }
 
     function afterAgreementCreated(

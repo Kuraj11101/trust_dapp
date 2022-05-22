@@ -50,20 +50,25 @@ contract StreamMarket is ReentrancyGuard {
         dai = fdai;
     }
 
-    function getTokenDetails(uint256 token, uint256 id)
+    function getPositionDetails(uint256 id)
         public
         view
         returns (
             uint256 price,
             int96 flowRate,
-            uint256 duration,
-            address seller
+            uint256 endTime,
+            address seller,
+            bool status,
+            address buyer
         )
     {
-        price = s_derivativeIdInfo[id].price;
-        flowRate = s_derivativeIdInfo[id].flowRate;
-        duration = s_derivativeIdInfo[id].endtime;
-        seller = s_derivativeIdInfo[id].seller;
+        Derivative storage der = s_derivativeIdInfo[id];
+        price = der.price;
+        flowRate = der.flowRate;
+        endTime = der.endtime;
+        seller = der.seller;
+        status = der.active;
+        buyer = der.buyer;
     }
 
     function addPosition(
@@ -117,5 +122,9 @@ contract StreamMarket is ReentrancyGuard {
             trustContract.closeStream(buyer);
             s_derivativeIdInfo[id].active = false;
         }
+    }
+
+    function getPositions() external view returns (uint256 index) {
+        index = s_positions.length;
     }
 }

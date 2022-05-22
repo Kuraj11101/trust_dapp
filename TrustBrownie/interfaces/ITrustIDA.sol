@@ -15,4 +15,20 @@ interface ITrustIDA {
     function removeAddress(address _employee) external;
 
     function amountTodistribute() external view returns (uint256);
+
+    function s_positions(uint256 index) external view returns (uint256 id);
+
+    function getPositions() external view returns (uint256 index);
+
+    function getPositionDetails(uint256 id)
+        external
+        view
+        returns (
+            uint256 price,
+            int96 flowRate,
+            uint256 endTime,
+            address seller,
+            bool isActive,
+            address buyer
+        );
 }

@@ -100,14 +100,9 @@ contract TrustCFA is Ownable {
         _;
     }
 
-    constructor(
-        address host,
-        address cfa,
-        address _trustIDA
-    ) {
+    constructor(address host, address cfa) {
         _host = ISuperfluid(host);
         _cfa = IConstantFlowAgreementV1(cfa);
-        idaContract = ITrustIDA(_trustIDA);
     }
 
     /**
@@ -362,8 +357,12 @@ contract TrustCFA is Ownable {
         }
     }
 
-    function addAdmin(address _keeper) external {
+    function addAdmin(address _keeper) external onlyOwner {
         investmentKeeper = _keeper;
+    }
+
+    function addIdaContract(address _idaCon) external onlyOwner {
+        idaContract = ITrustIDA(_idaCon);
     }
 
     function _totalAccumulated(address _investor)
