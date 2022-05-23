@@ -65,4 +65,17 @@ class UserController extends Controller
             $user = Auth::user();
             return response()->json(['success' => $user], $this-> successStatus);
         }
+
+        /**
+         *  user balance api
+         *  @return \Illuminate\Http\Response
+         */
+
+        public function userbalance()
+        {
+            $user = Auth::user()->balance;
+            return response()->json(['success' => $user], $this-> successStatus);
+        }
+
+
 }
