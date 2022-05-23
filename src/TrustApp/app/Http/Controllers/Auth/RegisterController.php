@@ -4,12 +4,10 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
-use App\Models\User;
+use App\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
-use App\Traits\ActivationKeyTrait;
 
 class RegisterController extends Controller
 {
@@ -24,7 +22,7 @@ class RegisterController extends Controller
     |
     */
 
-    use RegistersUsers, ActivationKeyTrait;
+    use RegistersUsers;
 
     /**
      * Where to redirect users after registration.
@@ -49,12 +47,11 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
-	protected function validator(array $data, $table)
+    protected function validator(array $data)
     {
         return Validator::make($data, [
-            'first_name' => ['required'],
-            'last_name' => ['required'],
-            'username' => ['required', 'string', 'min:4'],
+            'company_name' => ['required', 'string', 'max:255'],
+            'role'  =>  ['required', 'string', 'max:50'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
@@ -66,40 +63,13 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \App\User
      */
-	protected function create(array $data)
+    protected function create(array $data)
     {
         return User::create([
-            'first_name' => $data['first_name'],
-            'last_name' => $data['last_name'],
-            'username' => $data['username'],
+            'company_name' => $data['company_name'],
+            'role'  =>  $data['role'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
-            'activated' => !config('settings.send_activation_email')
         ]);
-    }
-
-	 public function register(Request $request)
-    {
-       $validator = $this->validator($request->all(), 'users');
-
-
-       //$this->validator($request->all(), 'users')->validate();
-
-        if ($validator->fails()) {
-            $this->throwValidationException(
-                $request, $validator
-            );
-        }
-
-        // create the user
-        $user = $this->create($request->all());
-
-        // process the activation email for the user
-        $this->queueActivationKeyNotification($user);
-
-        // we do not want to login the new user
-        return redirect('/login')
-            ->with('message', 'We sent you an activation code. Please check your email.')
-            ->with('status', 'success');
     }
 }

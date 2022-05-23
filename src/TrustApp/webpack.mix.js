@@ -11,5 +11,19 @@ const mix = require('laravel-mix');
  |
  */
 
-mix.js('resources/js/app.js', 'public/js')
+mix.react('resources/js/app.js', 'public/js').sourceMaps()
     .sass('resources/sass/app.scss', 'public/css');
+
+// mix.js('resources/js/app.js', 'public/js')
+//     .react()
+//     .extract(['react'])
+//     .postCss('resources/css/app.css', 'public/css', [
+//         //
+//     ]);
+
+// mix.js('src/app.js', 'dist').setPublicPath('dist');
+
+//mix.js('resources/js/app.js', 'public/js').sourceMaps();
+
+
+

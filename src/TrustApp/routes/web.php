@@ -132,4 +132,14 @@ Route::group(['middleware' => 'web'], function () {
 
  });
 
+//  Route::any('{all}', array('uses' => 'myPageLoading@method'))->where('all', '.*');
+
  Auth::routes();
+
+// Auth::routes();
+
+// Route::get('/home', 'HomeController@index')->name('home');
+
+// Auth::routes();
+
+// Route::get('/home', 'HomeController@index')->name('home');
